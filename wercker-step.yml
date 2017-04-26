@@ -1,0 +1,18 @@
+name: slack-notify
+version: 0.0.1
+description: Notify user or channel on outcome of a step.
+keywords:
+  - slack
+properties:
+  webhook_url:
+    type: string
+    required: true
+  notify_fail:
+    type: string
+    return: false
+  channel:
+    type: string
+    required: false
+  user:
+    type: string
+    required: false
