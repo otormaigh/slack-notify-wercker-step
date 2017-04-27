@@ -16,7 +16,7 @@ webhook_url = "https://hooks.slack.com/services/%s" % (webhook_token)
 print("BUILD MESSAGE")
 branch = os.environ['WERCKER_GIT_BRANCH']
 result = os.environ['WERCKER_RESULT']
-build_url = os.environ['WERCKER_APPLICATION_URL']
+build_url = os.environ['WERCKER_RUN_URL']
 
 if result == 'failed':
     color = "#900"
@@ -25,7 +25,7 @@ else:
 
 message = {
     "channel": '@elliot',
-    "text": "Build %s" % (result),
+    "text": "%s build %s" % (os.environ['WERCKER_GIT_REPOSITORY'], result),
     "username": "Wercker",
     "attachments": [
         {
@@ -43,13 +43,11 @@ message = {
                     "short": True
                 },
                 {
-                    "title": "Commit",
-                    "value": os.environ['WERCKER_GIT_COMMIT']
+                    "title": "Started by",
+                    "value": os.environ['WERCKER_STARTED_BY']
                 }
             ]
         },
     ]
 }
-
-print(message)
 requests.post(webhook_url, json=message)
