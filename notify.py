@@ -53,6 +53,7 @@ else:
 message = {
     "channel": user,
     "author_icon": author_icon,
+    "thumb_url": author_icon,
     "text": "%s build %s in %s" % (os.environ['WERCKER_GIT_REPOSITORY'], result, get_elapsed_time()),
     "username": "Wercker",
     "attachments": [
