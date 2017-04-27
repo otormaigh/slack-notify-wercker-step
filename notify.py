@@ -63,12 +63,12 @@ message = {
                 {
                     "title": "Branch",
                     "value": branch,
-                    "short": true
+                    "short": True
                 },
                 {
                     "title": "Started by",
                     "value": os.environ['WERCKER_STARTED_BY'],
-                    "short": true
+                    "short": True
                 }
             ]
         },
