@@ -16,7 +16,7 @@ webhook_url = "https://hooks.slack.com/services/%s" % (webhook_token)
 print("BUILD MESSAGE")
 branch = os.environ['WERCKER_GIT_BRANCH']
 result = os.environ['WERCKER_RESULT']
-#build_url = os.environ('WERCKER_APPLICATION_URL')
+build_url = os.environ['WERCKER_APPLICATION_URL']
 
 if result == 'failed':
     color = "#900"
@@ -39,7 +39,7 @@ message = {
                 },
                 {
                     "title": "URL",
-                    "value": "some_url_goes_here",
+                    "value": build_url,
                     "short": True
                 },
                 {
