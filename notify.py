@@ -8,7 +8,7 @@ webhook_token = os.environ['WEBHOOK_TOKEN']
 webhook_url = "https://hooks.slack.com/services/%s" % (webhook_token)
 
 # channel = os.environ['CHANNEL']
-user = os.environ['CHANNEL']
+user = os.environ['channel']
 
 print("BUILD MESSAGE")
 branch = os.environ['WERCKER_GIT_BRANCH']
@@ -49,4 +49,4 @@ message = {
 }
 
 print(message)
-requests.post(WEBHOOK_URL, json=message)
+requests.post(webhook_url, json=message)
