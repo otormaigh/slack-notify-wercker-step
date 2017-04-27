@@ -6,8 +6,10 @@ import requests
 webhook_token = os.environ['WEBHOOK_TOKEN']
 webhook_url = "https://hooks.slack.com/services/%s" % (webhook_token)
 
-#user = os.environ['user']
-#channel = os.environ['channel']
+user = "@%s" % (os.environ['user'])
+print("user is %s" % (user))
+
+#channel = "#%s" % (os.environ['channel'])
 
 #if not user:
 #if not channel:
@@ -27,6 +29,7 @@ message = {
     "channel": '@elliot',
     "text": "%s build %s" % (os.environ['WERCKER_GIT_REPOSITORY'], result),
     "username": "Wercker",
+    "author_icon":"",
     "attachments": [
         {
             "fallback": "Required plain-text summary of the attachment.",
@@ -38,13 +41,13 @@ message = {
                     "short": True
                 },
                 {
+                    "title": "Started by",
+                    "value": os.environ['WERCKER_STARTED_BY']
+                },
+                {
                     "title": "URL",
                     "value": build_url,
                     "short": True
-                },
-                {
-                    "title": "Started by",
-                    "value": os.environ['WERCKER_STARTED_BY']
                 }
             ]
         },
