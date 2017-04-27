@@ -6,7 +6,7 @@ import requests
 webhook_token = os.environ['WEBHOOK_TOKEN']
 webhook_url = "https://hooks.slack.com/services/%s" % (webhook_token)
 
-user = "@%s" % (os.environ['user'])
+user = "@%s" % (os.environ['WERCKER_SLACK_NOTIFY_USER'])
 print("user is %s" % (user))
 
 #channel = "#%s" % (os.environ['channel'])
