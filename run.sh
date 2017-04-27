@@ -1,5 +1,9 @@
 #!/bin/sh
 
+if [ ! "${WEBHOOK_TOKEN}" ]; then
+    fail "No webhook token has been set, skipping this step."
+fi
+
 sudo apt-get update -y
 sudo apt-get install -y python
 sudo apt-get install -y python-pip
