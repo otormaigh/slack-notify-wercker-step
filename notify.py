@@ -44,7 +44,7 @@ message = {
                 },
                 {
                     "title": "Commit",
-                    "value": os.environ('WERCKER_GIT_COMMIT')
+                    "value": os.environ['WERCKER_GIT_COMMIT']
                 }
             ]
         },
