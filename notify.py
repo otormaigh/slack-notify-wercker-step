@@ -6,8 +6,8 @@ import requests
 webhook_token = os.environ['WEBHOOK_TOKEN']
 webhook_url = "https://hooks.slack.com/services/%s" % (webhook_token)
 
+author_icon = "%s/%s" % (os.environ['WERCKER_STEP_ROOT'], os.environ['WERCKER_SLACK_NOTIFY_ICON'])
 user = "@%s" % (os.environ['WERCKER_SLACK_NOTIFY_USER'])
-print("user is %s" % (user))
 
 #channel = "#%s" % (os.environ['channel'])
 
@@ -26,10 +26,10 @@ else:
     color = '#36a64f'
 
 message = {
-    "channel": '@elliot',
+    "channel": user,
+    "author_icon": author_icon,
     "text": "%s build %s" % (os.environ['WERCKER_GIT_REPOSITORY'], result),
     "username": "Wercker",
-    "author_icon":"",
     "attachments": [
         {
             "fallback": "Required plain-text summary of the attachment.",
@@ -47,7 +47,7 @@ message = {
                 {
                     "title": "URL",
                     "value": build_url,
-                    "short": True
+                    "short": False
                 }
             ]
         },
