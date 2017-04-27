@@ -32,7 +32,7 @@ def pluralize(number, word):
 webhook_token = os.environ['WEBHOOK_TOKEN']
 webhook_url = "https://hooks.slack.com/services/%s" % (webhook_token)
 
-author_icon = "%s/%s" % (os.environ['WERCKER_STEP_ROOT'], os.environ['WERCKER_SLACK_NOTIFY_ICON'])
+author_icon = os.environ['WERCKER_SLACK_NOTIFY_ICON']
 user = "@%s" % (os.environ['WERCKER_SLACK_NOTIFY_USER'])
 
 #channel = "#%s" % (os.environ['channel'])
@@ -63,11 +63,12 @@ message = {
                 {
                     "title": "Branch",
                     "value": branch,
-                    "short": True
+                    "short": true
                 },
                 {
                     "title": "Started by",
-                    "value": os.environ['WERCKER_STARTED_BY']
+                    "value": os.environ['WERCKER_STARTED_BY'],
+                    "short": true
                 }
             ]
         },
