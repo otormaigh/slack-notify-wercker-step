@@ -7,8 +7,13 @@ import sys
 webhook_token = os.environ['WEBHOOK_TOKEN']
 webhook_url = "https://hooks.slack.com/services/%s" % (webhook_token)
 
-# channel = os.environ['CHANNEL']
-user = os.environ['channel']
+#user = os.environ['user']
+#channel = os.environ['channel']
+
+#if not user:
+
+#if not channel:
+    #channel = '#general'
 
 print("BUILD MESSAGE")
 branch = os.environ['WERCKER_GIT_BRANCH']
