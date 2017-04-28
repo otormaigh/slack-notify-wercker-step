@@ -77,7 +77,7 @@ message = {
                     "title": "Started by",
                     "value": os.environ['WERCKER_STARTED_BY'],
                     "short": True
-                }¸
+                }
             ]
         }
     ]
