@@ -77,35 +77,7 @@ message = {
                     "title": "Started by",
                     "value": os.environ['WERCKER_STARTED_BY'],
                     "short": True
-                }
-            ]
-        },
-        {
-            "text": "Are you not entertained?",
-            "fallback": "Are you not entertained?",
-            "callback_id": "wopr_game",
-            "color": "#3AA3E3",
-            "attachment_type": "default",
-            "actions": [
-                {
-                    "name": "answer",
-                    "text": "No",
-                    "style": "danger",
-                    "type": "button",
-                    "value": "no",
-                    "confirm": {
-                        "title": "Is this not why you are here?",
-                        "text": "Wouldn't you prefer a good game of chess?",
-                        "ok_text": "Maybe",
-                        "dismiss_text": "Probably not"
-                    }
-                },
-                {
-                    "name": "answer",
-                    "text": "Yes",
-                    "type": "button",
-                    "value": "yes"
-                }
+                }¸
             ]
         }
     ]
