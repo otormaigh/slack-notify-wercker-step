@@ -17,10 +17,11 @@ fi
 # Install required python modules.
 sudo pip install requests
 
-GRADLE_PATH=gradle.properties                                         # path to the gradle file
-GRADLE_FIELD="STABLE_VERSION"                                         # field name
-
-version_name=$(grep $GRADLE_FIELD $GRADLE_PATH | awk '{print $3}')    # get value STABLE_VERSION=0.1.0
+# variables
+GRADLE_PATH=app/build.gradle                                       # path to the gradle file
+GRADLE_FIELD="versionName"                                         # field name
+VERSION_TMP=$(grep $GRADLE_FIELD $GRADLE_PATH | awk '{print $2}')  # get value versionName"0.1.0"
+version_name=$(echo $VERSION_TMP | sed -e 's/^"//'  -e 's/"$//')   # remove quotes 0.1.0
 
 if [ ! "$version_name" ]; then
   version_name="unknown"
