@@ -34,10 +34,17 @@ webhook_url = "https://hooks.slack.com/services/%s" % (webhook_token)
 
 author_icon = os.environ['WERCKER_SLACK_NOTIFY_ICON']
 user = "@%s" % (os.environ['WERCKER_SLACK_NOTIFY_USER'])
+run_url = os.environ['WERCKER_RUN_URL']
+
+message = os.environ['WERCKER_SLACK_NOTIFY_MESSAGE']
+
+if not message:
+    message = "%s build %s in %s" % (os.environ['WERCKER_GIT_REPOSITORY'], result, get_elapsed_time())
 
 #channel = "#%s" % (os.environ['channel'])
 
-#if not user:
+if not user:
+    user = "@elliot"
 #if not channel:
     #channel = '#general'
 
@@ -54,7 +61,7 @@ message = {
     "channel": user,
     "author_icon": author_icon,
     "thumb_url": author_icon,
-    "text": "%s build %s in %s" % (os.environ['WERCKER_GIT_REPOSITORY'], result, get_elapsed_time()),
+    "text": message,
     "username": "Wercker",
     "attachments": [
         {
@@ -62,8 +69,8 @@ message = {
             "color": color,
             "fields": [
                 {
-                    "title": "Branch",
-                    "value": branch,
+                    "title": "Run url",
+                    "value": run_url,
                     "short": True
                 },
                 {
