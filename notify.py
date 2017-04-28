@@ -32,6 +32,10 @@ def pluralize(number, word):
 webhook_token = os.environ['WEBHOOK_TOKEN']
 webhook_url = "https://hooks.slack.com/services/%s" % (webhook_token)
 
+
+print("BUILD MESSAGE")
+branch = os.environ['WERCKER_GIT_BRANCH']
+result = os.environ['WERCKER_RESULT']
 author_icon = os.environ['WERCKER_SLACK_NOTIFY_ICON']
 user = "@%s" % (os.environ['WERCKER_SLACK_NOTIFY_USER'])
 run_url = os.environ['WERCKER_RUN_URL']
@@ -47,10 +51,6 @@ if not user:
     user = "@elliot"
 #if not channel:
     #channel = '#general'
-
-print("BUILD MESSAGE")
-branch = os.environ['WERCKER_GIT_BRANCH']
-result = os.environ['WERCKER_RESULT']
 
 if result == 'failed':
     color = "#900"
