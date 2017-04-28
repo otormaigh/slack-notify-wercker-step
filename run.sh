@@ -17,4 +17,8 @@ fi
 # Install required python modules.
 sudo pip install requests
 
-python "$WERCKER_STEP_ROOT/notify.py"
+GRADLE_PATH=gradle.properties   # path to the gradle file
+GRADLE_FIELD="STABLE_VERSION"   # field name
+VERSION_NAME=$(grep gradle.properties $GRADLE_PATH | awk '{print $3}')    # get value STABLE_VERSION=0.1.0
+
+python "$WERCKER_STEP_ROOT/notify.py" VERSION_NAME
