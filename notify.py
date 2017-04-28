@@ -4,7 +4,6 @@ import os
 import requests
 import calendar
 import datetime
-import sys
 
 def get_elapsed_time():
     started = int(os.environ['WERCKER_MAIN_PIPELINE_STARTED'])
@@ -41,7 +40,7 @@ user = "@%s" % (os.environ['WERCKER_SLACK_NOTIFY_USER'])
 #channel = "#%s" % (os.environ['channel'])
 run_url = os.environ['WERCKER_RUN_URL']
 message = os.environ['WERCKER_SLACK_NOTIFY_MESSAGE']
-version_name = sys.argv[1]
+version_name = os.environ['VERSION_NAME']
 
 if not message:
     message = "%s build %s." % (os.environ['WERCKER_GIT_REPOSITORY'], result)
