@@ -1,5 +1,5 @@
 name: slack-notify
-version: 0.0.37
+version: 0.0.38
 description: Notify user or channel on outcome of a step.
 keywords:
   - slack
