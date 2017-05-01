@@ -76,7 +76,7 @@ class BuildPass(object):
                             short = True
                         ),
                         dict(
-                            title = Time elapsed',
+                            title = 'Time elapsed',
                             value = get_elapsed_time(),
                             short = True
                         ),
