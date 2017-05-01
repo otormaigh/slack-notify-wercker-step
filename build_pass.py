@@ -49,41 +49,43 @@ class BuildPass(object):
             'channel': self.channel_id,
             'icon_url': self.icon_url,
             'attachments': [
-                'color': '#98FB98',
-                'attachment_type': 'default',
-                'callback_id': 'build_pass',
-                'fields': [
-                    {
-                        'title': 'Project',
-                        'value': self.project_name,
-                        'short': True
-                    },
-                    {
-                        'title': 'Status',
-                        'value': 'Failed',
-                        'short': True
-                    },
-                    {
-                        'title': 'Started by',
-                        'value': os.environ['WERCKER_STARTED_BY'],
-                        'short': True
-                    },
-                    {
-                        'title': 'Time elapsed',
-                        'value': get_elapsed_time(),
-                        'short': True
-                    },
-                    {
-                        'title': 'Version',
-                        'value': self.version_name,
-                        'short': True
-                    },
-                    {
-                        'title': 'Branch',
-                        'value': self.branch,
-                        'short': True
-                    }
-                ]
+                {
+                    'color': '#98FB98',
+                    'attachment_type': 'default',
+                    'callback_id': 'build_pass',
+                    'fields': [
+                        {
+                            'title': 'Project',
+                            'value': self.project_name,
+                            'short': True
+                        },
+                        {
+                            'title': 'Status',
+                            'value': 'Failed',
+                            'short': True
+                        },
+                        {
+                            'title': 'Started by',
+                            'value': os.environ['WERCKER_STARTED_BY'],
+                            'short': True
+                        },
+                        {
+                            'title': 'Time elapsed',
+                            'value': get_elapsed_time(),
+                            'short': True
+                        },
+                        {
+                            'title': 'Version',
+                            'value': self.version_name,
+                            'short': True
+                        },
+                        {
+                            'title': 'Branch',
+                            'value': self.branch,
+                            'short': True
+                        }
+                    ]
+                }
             ]
         }
         requests.post(webhook_url, json = json_message)
