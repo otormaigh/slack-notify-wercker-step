@@ -6,6 +6,7 @@
   * If release build was success, ask whether to deploy or not.
   * If build fails. Open reports, or retry build.
 * Add link to downloadable/viewable builds
+* Add '#notify:SOME_USER' to commit message to send message to that specific user.
 
 ## Parameters needed
 * Slack web hook tokens

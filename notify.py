@@ -39,5 +39,4 @@ else:
                         icon_url,
                         os.environ['VERSION_NAME'])
 
-webhook_url = "https://hooks.slack.com/services/%s" % os.environ['WEBHOOK_TOKEN']
-message.send(webhook_url)
+message.send("https://hooks.slack.com/services/%s" % os.environ['WEBHOOK_TOKEN'])
