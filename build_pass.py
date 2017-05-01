@@ -42,7 +42,7 @@ class BuildPass(object):
 
 
     def send(self, webhook_url):
-        if not channel_id:
+        if not self.channel_id:
             self.channel_id = '#general'
 
         json_message = {
