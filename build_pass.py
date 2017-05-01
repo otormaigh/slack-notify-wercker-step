@@ -1,8 +1,7 @@
-# -*- coding : utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Model class used to create a Slack message relative to a successful build.
 """
-
 import requests
 import calendar
 import datetime

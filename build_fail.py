@@ -1,4 +1,4 @@
-# -*- coding : utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Model class used to create a Slack message relative to a failed build.
 """
@@ -8,8 +8,8 @@ import os
 def pipeline_id():
     run_url = os.environ['WERCKER_RUN_URL']
     application_url = os.environ['WERCKER_APPLICATION_URL']
-    print('run_url = ', run_url)
-    print('application_url = ', application_url)
+    print('run_url = %s' % run_url)
+    print('application_url = %s' % application_url)
 
     # Split the url and get the last item.
     # Make sure to remove the trailing '>'
