@@ -33,12 +33,12 @@ if result == 'failed':
                         branch,
                         report_url,
                         icon_url,
-                        user,)
+                        channel)
 else:
     message = BuildPass(project_name,
                         branch,
                         icon_url,
                         os.environ['VERSION_NAME'],
-                        user,)
+                        channel)
 
 message.send(SlackClient(os.environ['SLACK_BOT_TOKEN']))
