@@ -2,7 +2,6 @@
 """
 Model class used to create a Slack message relative to a successful build.
 """
-from slackclient import SlackClient
 
 import requests
 import calendar
@@ -45,11 +44,7 @@ class BuildPass(object):
         self.channel_id = channel_id
 
 
-    def send(self, webhook_url):
-        if not self.channel_id:
-            self.channel_id = '#general'
-
-        slack_client = SlackClient(os.environ['SLACK_BOT_TOKEN'])
+    def send(self, slack_client):
         slack_client.api_call(
             'chat.postMessage',
             channel = self.channel_id,

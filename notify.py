@@ -4,6 +4,7 @@ import os
 
 from build_fail import BuildFail
 from build_pass import BuildPass
+from slackclient import SlackClient
 
 
 def pipeline_id():
@@ -13,12 +14,15 @@ def pipeline_id():
     return run_url.split('/')[-1].replace('>', '')
 
 
-user = "@%s" % (os.environ['WERCKER_SLACK_NOTIFY_USER'])
+channel = "#%s" % (os.environ['WERCKER_SLACK_NOTIFY_CHANNEL'])
 project_name = os.environ['WERCKER_GIT_REPOSITORY']
 branch = os.environ['WERCKER_GIT_BRANCH']
 icon_url = os.environ['WERCKER_SLACK_NOTIFY_ICON']
 
 result = os.environ['WERCKER_RESULT']
+
+if not channel:
+    channel = '#general'
 
 if result == 'failed':
     # TODO : Elliot -> Get an actual url to where the reports.zip is stored.
@@ -37,4 +41,4 @@ else:
                         os.environ['VERSION_NAME'],
                         user,)
 
-message.send("https://hooks.slack.com/services/%s" % os.environ['WEBHOOK_TOKEN'])
+message.send(SlackClient(os.environ['SLACK_BOT_TOKEN']))
