@@ -6,14 +6,14 @@ Model class used to create a Slack message relative to a failed build.
 import requests
 
 class BuildFail(object):
-    def __init__(self, channel_id = None, project_name, pipeline_id, branch, report_url, icon_url):
-        self.channel_id = channel_id
+    def __init__(self, project_name, pipeline_id, branch, report_url, icon_url, channel_id = None, ):
         self.project_name = project_name
         self.pipeline_id = pipeline_id
         self.branch = branch
         self.report_url = report_url
         self.icon_url = icon_url
-
+        self.channel_id = channel_id
+        
 
     def send(self, webhook_url):
         if not channel_id:
@@ -24,7 +24,7 @@ class BuildFail(object):
             'icon_url': self.icon_url,
             'attachments': [
                 {
-                    'color': '#ff0033', 
+                    'color': '#ff0033',
                     'attachment_type': 'default',
                     'callback_id': 'build_fail',
                     'fields': [

@@ -26,17 +26,17 @@ if result == 'failed':
     # TODO : Elliot -> Get an actual url to where the reports.zip is stored.
     report_url = 'https://i.imgur.com/s85Xa.png'
 
-    message = BuildFail(user,
-                        project_name,
+    message = BuildFail(project_name,
                         pipeline_id(),
                         branch,
                         report_url,
-                        icon_url)
+                        icon_url,
+                        user,)
 else:
-    message = BuildPass(user,
-                        project_name,
+    message = BuildPass(project_name,
                         branch,
                         icon_url,
-                        os.environ['VERSION_NAME'])
+                        os.environ['VERSION_NAME'],
+                        user,)
 
 message.send("https://hooks.slack.com/services/%s" % os.environ['WEBHOOK_TOKEN'])

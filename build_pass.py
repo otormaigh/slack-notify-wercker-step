@@ -33,12 +33,12 @@ def pluralize(number, word):
 
 class BuildPass(object):
 
-    def __init__(self, channel_id = None, project_name, branch, icon_url, version_name):
-        self.channel_id = channel_id
+    def __init__(self, project_name, branch, icon_url, version_name, channel_id = None):
         self.project_name = project_name
         self.branch = branch
         self.icon_url = icon_url
         self.version_name = version_name
+        self.channel_id = channel_id
 
 
     def send(self, webhook_url):
