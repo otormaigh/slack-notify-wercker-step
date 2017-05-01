@@ -4,6 +4,8 @@ Model class used to create a Slack message relative to a successful build.
 """
 
 import requests
+import calendar
+import datetime
 import os
 
 def get_elapsed_time():

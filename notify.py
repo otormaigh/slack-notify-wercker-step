@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 import os
-import calendar
-import datetime
 
 from build_fail import BuildFail
 from build_pass import BuildPass
