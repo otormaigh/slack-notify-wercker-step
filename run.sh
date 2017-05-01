@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if [ ! "${WEBHOOK_TOKEN}" ]; then
-    fail "No webhook token has been set, skipping this step."
+if [ ! "${SLACK_BOT_TOKEN}" ]; then
+    fail "No token has been set, skipping this step."
 fi
 
 if [ $(dpkg-query -W -f='${Status}' python 2>/dev/null | grep -c "ok installed") -eq 0 ]; then

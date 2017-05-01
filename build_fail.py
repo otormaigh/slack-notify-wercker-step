@@ -2,12 +2,23 @@
 """
 Model class used to create a Slack message relative to a failed build.
 """
+import os
+
+
+def pipeline_id():
+    run_url = os.environ['WERCKER_RUN_URL']
+    application_url = os.environ['WERCKER_APPLICATION_URL']
+    print('run_url = ', run_url)
+    print('application_url = ', application_url)
+
+    # Split the url and get the last item.
+    # Make sure to remove the trailing '>'
+    return run_url.split('/')[-1].replace('>', '')
 
 
 class BuildFail(object):
-    def __init__(self, project_name, pipeline_id, branch, report_url, icon_url, channel_id = None, ):
+    def __init__(self, project_name, branch, report_url, icon_url, channel_id = None, ):
         self.project_name = project_name
-        self.pipeline_id = pipeline_id
         self.branch = branch
         self.report_url = report_url
         self.icon_url = icon_url
@@ -42,7 +53,7 @@ class BuildFail(object):
                         ),
                         dict(
                             title = "Pipeline ID",
-                            value = self.pipeline_id,
+                            value = pipeline_id(),
                             short = True
                         )
                     ],
@@ -62,7 +73,7 @@ class BuildFail(object):
                         ),
                         dict(
                             name = 'report',
-                            text = 'Report',
+                            text = 'View report',
                             type = 'button',
                             value = self.report_url
                         )
