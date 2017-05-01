@@ -16,6 +16,7 @@ fi
 
 # Install required python modules.
 sudo pip install requests
+sudo pip install slackclient
 
 # TODO : Elliot -> make the gradle path more dynamic
 # for differenct modules
