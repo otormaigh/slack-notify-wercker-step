@@ -66,8 +66,8 @@ class BuildPass(object):
                             short = True
                         ),
                         dict(
-                            title = 'Status',
-                            value = 'Failed',
+                            title = 'Time elapsed',
+                            value = get_elapsed_time(),
                             short = True
                         ),
                         dict(
@@ -76,8 +76,8 @@ class BuildPass(object):
                             short = True
                         ),
                         dict(
-                            title = 'Time elapsed',
-                            value = get_elapsed_time(),
+                            title = 'Status',
+                            value = 'Passed',
                             short = True
                         ),
                         dict(
@@ -89,27 +89,6 @@ class BuildPass(object):
                             title = "Branch",
                             value = self.branch,
                             short = True
-                        )
-                    ],
-                    actions = [
-                        dict(
-                            name = 'rebuild',
-                            text = 'Rebuild',
-                            type = 'button',
-                            value = 'rebuild',
-                            style = 'danger',
-                            confirm = dict(
-                                title = 'Are you sure?',
-                                text = ('Are you sure you want to rebuild %s?' % self.project_name),
-                                ok_text = 'Yes',
-                                dismiss_text = 'No'
-                            )
-                        ),
-                        dict(
-                            name = 'report',
-                            text = 'Report',
-                            type = 'button',
-                            value = self.report_url
                         )
                     ]
                 )
