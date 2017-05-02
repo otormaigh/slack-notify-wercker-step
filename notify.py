@@ -7,7 +7,7 @@ from build_pass import BuildPass
 from slackclient import SlackClient
 
 
-channel = "#%s" % (os.environ['WERCKER_SLACK_NOTIFY_CHANNEL'])
+channel = os.environ['WERCKER_SLACK_NOTIFY_NOTIFY']
 project_name = os.environ['WERCKER_GIT_REPOSITORY']
 branch = os.environ['WERCKER_GIT_BRANCH']
 icon_url = os.environ['WERCKER_SLACK_NOTIFY_ICON']
@@ -28,7 +28,6 @@ if result == 'failed':
                         channel)
 else:
     message = BuildPass(project_name,
-                        branch,
                         icon_url,
                         os.environ['VERSION_NAME'],
                         channel)

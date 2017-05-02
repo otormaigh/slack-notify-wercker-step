@@ -35,9 +35,8 @@ def pluralize(number, word):
 
 
 class BuildPass(object):
-    def __init__(self, project_name, branch, icon_url, version_name, channel_id = None):
+    def __init__(self, project_name, icon_url, version_name, channel_id):
         self.project_name = project_name
-        self.branch = branch
         self.icon_url = icon_url
         self.version_name = version_name
         self.channel_id = channel_id
@@ -65,24 +64,19 @@ class BuildPass(object):
                             short = True
                         ),
                         dict(
+                            title = 'Version',
+                            value = self.version_name,
+                            short = True
+                        )
+                        dict(
                             title = 'Started by',
                             value = os.environ['WERCKER_STARTED_BY'],
                             short = True
                         ),
                         dict(
-                            title = 'Status',
-                            value = 'Passed',
-                            short = True
-                        ),
-                        dict(
-                            title = 'Version',
-                            value = self.version_name,
-                            short = True
-                        ),
-                        dict(
-                            title = "Branch",
-                            value = self.branch,
-                            short = True
+                            title = 'Related issues',
+                            value = '',
+                            short = False
                         )
                     ]
                 )

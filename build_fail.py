@@ -3,17 +3,7 @@
 Model class used to create a Slack message relative to a failed build.
 """
 import os
-
-
-def pipeline_id():
-    run_url = os.environ['WERCKER_RUN_URL']
-    application_url = os.environ['WERCKER_APPLICATION_URL']
-    print('run_url = %s' % run_url)
-    print('application_url = %s' % application_url)
-
-    # Split the url and get the last item.
-    # Make sure to remove the trailing '>'
-    return run_url.split('/')[-1].replace('>', '')
+import requests
 
 
 class BuildFail(object):
@@ -23,6 +13,14 @@ class BuildFail(object):
         self.report_url = report_url
         self.icon_url = icon_url
         self.channel_id = channel_id
+
+
+    """
+    Split the url and get the last item, which contains the id.
+    Make sure to remove the trailing '>'
+    """
+    def __id_from_url(url):
+        return url.split('/')[-1].replace('>', '')
 
 
     def send(self, slack_client):
@@ -47,14 +45,18 @@ class BuildFail(object):
                             short = True
                         ),
                         dict(
-                            title = "Branch",
+                            title = 'Branch',
                             value = self.branch,
                             short = True
                         ),
                         dict(
-                            title = "Pipeline ID",
-                            value = pipeline_id(),
+                            title = 'Run ID',
+                            value = self.__id_from_url(os.environ['WERCKER_RUN_URL']),
                             short = True
+                        ),
+                        dict(
+                            title = 'App ID',
+                            value = self.__id_from_url(os.environ['WERCKER_APPLICATION_URL'])
                         )
                     ],
                     actions = [
@@ -75,7 +77,7 @@ class BuildFail(object):
                             name = 'report',
                             text = 'View report',
                             type = 'button',
-                            value = self.report_url
+                            value = ('{"run_id": %s,"app_id": %s}', % (self.__id_from_url(os.environ['WERCKER_RUN_URL']), self.__id_from_url(os.environ['WERCKER_APPLICATION_URL'])))
                         )
                     ]
                 )
