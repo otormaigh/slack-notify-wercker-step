@@ -66,7 +66,7 @@ class BuildPass(object):
                                 title = 'Version',
                                 value = self.version_name,
                                 short = True
-                            )
+                            ),
                             dict(
                                 title = 'Started by',
                                 value = os.environ['WERCKER_STARTED_BY'],
