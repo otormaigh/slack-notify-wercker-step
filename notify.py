@@ -32,5 +32,6 @@ else:
                         os.environ['VERSION_NAME'],
                         channel)
 
+print('tring to send the message now')
 result = message.send(SlackClient(os.environ['SLACK_BOT_TOKEN']))
 print('results = ', result)
