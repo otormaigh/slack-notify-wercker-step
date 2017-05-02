@@ -18,7 +18,7 @@ class BuildFail(object):
     Split the url and get the last item, which contains the id.
     Make sure to remove the trailing '>'
     """
-    def __id_from_url(url):
+    def __id_from_url(self, url):
         return url.split('/')[-1].replace('>', '')
 
 
