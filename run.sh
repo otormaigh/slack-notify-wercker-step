@@ -15,5 +15,5 @@ if [ ! "$VERSION_NAME" ]; then
   export VERSION_NAME="unknown"
 fi
 
-pip install -r requirements.txt
+pip install -r "$WERCKER_STEP_ROOT/requirements.txt"
 python "$WERCKER_STEP_ROOT/notify.py"
