@@ -3,7 +3,6 @@
 Model class used to create a Slack message relative to a failed build.
 """
 import os
-import requests
 
 
 class BuildFail(object):
