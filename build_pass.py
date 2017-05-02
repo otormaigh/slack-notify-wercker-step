@@ -43,42 +43,42 @@ class BuildPass(object):
 
 
     def send(self, slack_client):
-        slack_client.api_call(
-            'chat.postMessage',
-            channel = self.channel_id,
-            icon_url = self.icon_url,
-            attachments = [
-                dict(
-        			color = '#98FB98',
-        			attachment_type = 'default',
-        			callback_id = 'build_pass',
-                    fields = [
-                        dict(
-                            title = 'Project',
-                            value = self.project_name,
-                            short = True
-                        ),
-                        dict(
-                            title = 'Time elapsed',
-                            value = get_elapsed_time(),
-                            short = True
-                        ),
-                        dict(
-                            title = 'Version',
-                            value = self.version_name,
-                            short = True
-                        )
-                        dict(
-                            title = 'Started by',
-                            value = os.environ['WERCKER_STARTED_BY'],
-                            short = True
-                        ),
-                        dict(
-                            title = 'Related issues',
-                            value = '',
-                            short = False
-                        )
-                    ]
-                )
-            ]
-        )
+        return slack_client.api_call(
+                'chat.postMessage',
+                channel = self.channel_id,
+                icon_url = self.icon_url,
+                attachments = [
+                    dict(
+                		color = '#98FB98',
+                		attachment_type = 'default',
+                		callback_id = 'build_pass',
+                        fields = [
+                            dict(
+                                title = 'Project',
+                                value = self.project_name,
+                                short = True
+                            ),
+                            dict(
+                                title = 'Time elapsed',
+                                value = get_elapsed_time(),
+                                short = True
+                            ),
+                            dict(
+                                title = 'Version',
+                                value = self.version_name,
+                                short = True
+                            )
+                            dict(
+                                title = 'Started by',
+                                value = os.environ['WERCKER_STARTED_BY'],
+                                short = True
+                            ),
+                            dict(
+                                title = 'Related issues',
+                                value = '',
+                                short = False
+                            )
+                        ]
+                    )
+                ]
+            )

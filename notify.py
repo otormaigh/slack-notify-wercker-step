@@ -7,7 +7,7 @@ from build_pass import BuildPass
 from slackclient import SlackClient
 
 
-channel = os.environ['WERCKER_SLACK_NOTIFY_NOTIFY']
+channel = "#%s" % os.environ['WERCKER_SLACK_NOTIFY_CHANNEL']
 project_name = os.environ['WERCKER_GIT_REPOSITORY']
 branch = os.environ['WERCKER_GIT_BRANCH']
 icon_url = os.environ['WERCKER_SLACK_NOTIFY_ICON']
@@ -32,4 +32,5 @@ else:
                         os.environ['VERSION_NAME'],
                         channel)
 
-message.send(SlackClient(os.environ['SLACK_BOT_TOKEN']))
+result = message.send(SlackClient(os.environ['SLACK_BOT_TOKEN']))
+print('results = ', result)
