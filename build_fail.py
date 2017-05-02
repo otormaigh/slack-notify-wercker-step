@@ -77,7 +77,7 @@ class BuildFail(object):
                                     name = 'report',
                                     text = 'View report',
                                     type = 'button',
-                                    value = ('{"run_id": %s,"app_id": %s}', % (self.__id_from_url(os.environ['WERCKER_RUN_URL']), self.__id_from_url(os.environ['WERCKER_APPLICATION_URL'])))
+                                    value = ('{"run_id": %s,"app_id": %s}' % (self.__id_from_url(os.environ['WERCKER_RUN_URL']), self.__id_from_url(os.environ['WERCKER_APPLICATION_URL'])))
                                 )
                             ]
                         )
