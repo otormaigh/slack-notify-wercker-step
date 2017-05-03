@@ -6,7 +6,7 @@ import os
 
 
 class BuildFail(object):
-    def __init__(self, project_name, branch, report_url, icon_url, channel_id = None, ):
+    def __init__(self, project_name, branch, report_url, icon_url, channel_id):
         self.project_name = project_name
         self.branch = branch
         self.report_url = report_url
@@ -29,7 +29,7 @@ class BuildFail(object):
                     icon_url = self.icon_url,
                     attachments = [
                         dict(
-                			color = '#ff0033',
+                			color = '#FF0033',
                 			attachment_type = 'default',
                 			callback_id = 'build_fail',
                             fields = [
@@ -47,15 +47,6 @@ class BuildFail(object):
                                     title = 'Branch',
                                     value = self.branch,
                                     short = True
-                                ),
-                                dict(
-                                    title = 'Run ID',
-                                    value = self.__id_from_url(os.environ['WERCKER_RUN_URL']),
-                                    short = True
-                                ),
-                                dict(
-                                    title = 'App ID',
-                                    value = self.__id_from_url(os.environ['WERCKER_APPLICATION_URL'])
                                 )
                             ],
                             actions = [

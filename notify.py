@@ -14,9 +14,8 @@ icon_url = os.environ['WERCKER_SLACK_NOTIFY_ICON']
 
 result = os.environ['WERCKER_RESULT']
 
-print('-----------------------------')
-print('tring to send the message now')
-print('-----------------------------')
+print('channel = ', channel)
+print('channel.envar = ', os.environ['WERCKER_SLACK_NOTIFY_CHANNEL'])
 
 if not channel:
     channel = '#general'
@@ -36,5 +35,4 @@ else:
                         os.environ['VERSION_NAME'],
                         channel)
 
-result = message.send(SlackClient(os.environ['SLACK_BOT_TOKEN']))
-print('results = ', result)
+message.send(SlackClient(os.environ['SLACK_BOT_TOKEN']))
