@@ -47,12 +47,13 @@ if result:
         If its empty too, set the notify channel to '#general'.
         """
         if not notify_success:
-            default_channel = os.environ['WERCKER_SLACK_NOTIFY_DEFAULT_CHANNEL']
+            default_channel = os.getenv('WERCKER_SLACK_NOTIFY_DEFAULT_CHANNEL')
             if default_channel:
                 notify_success = default_channel
             else:
                 notify_success = '#general'
 
+        print('notify_success = ', notify_success)
         for channel in notify_success:
             message.send(slack_client, channel)
 else:
