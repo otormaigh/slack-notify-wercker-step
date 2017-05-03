@@ -19,7 +19,7 @@ result = os.environ['WERCKER_RESULT']
 """
 Only proceed if we have a vaild build result.
 """
-if not result:
+if result:
     icon_url = os.getenv('WERCKER_SLACK_NOTIFY_ICON')
     notify_fail = spliterator(os.getenv('WERCKER_SLACK_NOTIFY_NOTIFY_ON_FAIL'))
     notify_success = spliterator(os.getenv('WERCKER_SLACK_NOTIFY_NOTIFY_ON_SUCCESS'))
