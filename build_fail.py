@@ -6,12 +6,11 @@ import os
 
 
 class BuildFail(object):
-    def __init__(self, project_name, branch, report_url, icon_url, channel_id):
+    def __init__(self, project_name, branch, report_url, icon_url):
         self.project_name = project_name
         self.branch = branch
         self.report_url = report_url
         self.icon_url = icon_url
-        self.channel_id = channel_id
 
 
     """
@@ -22,10 +21,10 @@ class BuildFail(object):
         return url.split('/')[-1].replace('>', '')
 
 
-    def send(self, slack_client):
+    def send(self, slack_client, channel):
         return slack_client.api_call(
                     'chat.postMessage',
-                    channel = self.channel_id,
+                    channel = channel,
                     icon_url = self.icon_url,
                     attachments = [
                         dict(

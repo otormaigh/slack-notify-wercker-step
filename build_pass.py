@@ -34,17 +34,16 @@ def pluralize(number, word):
 
 
 class BuildPass(object):
-    def __init__(self, project_name, icon_url, version_name, channel_id):
+    def __init__(self, project_name, icon_url, version_name):
         self.project_name = project_name
         self.icon_url = icon_url
         self.version_name = version_name
-        self.channel_id = channel_id
 
 
-    def send(self, slack_client):
+    def send(self, slack_client, channel):
         return slack_client.api_call(
                 'chat.postMessage',
-                channel = self.channel_id,
+                channel = channel,
                 icon_url = self.icon_url,
                 attachments = [
                     dict(

@@ -7,18 +7,18 @@ from build_pass import BuildPass
 from slackclient import SlackClient
 
 
-channel = os.environ['WERCKER_SLACK_NOTIFY_CHANNEL']
+channels = os.environ['WERCKER_SLACK_NOTIFY_CHANNEL']
 project_name = os.environ['WERCKER_GIT_REPOSITORY']
 branch = os.environ['WERCKER_GIT_BRANCH']
 icon_url = os.environ['WERCKER_SLACK_NOTIFY_ICON']
 
 result = os.environ['WERCKER_RESULT']
 
-print('channel = ', channel)
+print('channels = ', channels)
 print('channel.envar = ', os.environ['WERCKER_SLACK_NOTIFY_CHANNEL'])
 
-if not channel:
-    channel = '#general'
+if not channels:
+    channels = '#general'
 
 if result == 'failed':
     # TODO : Elliot -> Get an actual url to where the reports.zip is stored.
@@ -35,4 +35,6 @@ else:
                         os.environ['VERSION_NAME'],
                         channel)
 
-message.send(SlackClient(os.environ['SLACK_BOT_TOKEN']))
+for channel in channels.split(','):
+    print('channel = ', channel)
+    message.send(SlackClient(os.environ['SLACK_BOT_TOKEN']), channel)
