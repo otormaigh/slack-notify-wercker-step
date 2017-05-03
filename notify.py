@@ -27,13 +27,11 @@ if result == 'failed':
     message = BuildFail(project_name,
                         branch,
                         report_url,
-                        icon_url,
-                        channel)
+                        icon_url)
 else:
     message = BuildPass(project_name,
                         icon_url,
-                        os.environ['VERSION_NAME'],
-                        channel)
+                        os.environ['VERSION_NAME'])
 
 for channel in channels.split(','):
     print('channel = ', channel)
