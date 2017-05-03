@@ -7,7 +7,7 @@ from build_pass import BuildPass
 from slackclient import SlackClient
 
 
-channel = "#%s" % os.environ['WERCKER_SLACK_NOTIFY_CHANNEL']
+channel = os.environ['WERCKER_SLACK_NOTIFY_CHANNEL']
 project_name = os.environ['WERCKER_GIT_REPOSITORY']
 branch = os.environ['WERCKER_GIT_BRANCH']
 icon_url = os.environ['WERCKER_SLACK_NOTIFY_ICON']
