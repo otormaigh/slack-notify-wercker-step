@@ -63,7 +63,7 @@ class BuildFail(object):
                                     name = 'rebuild',
                                     text = 'Rebuild',
                                     type = 'button',
-                                    value = 'rebuild',
+                                    value = ('{"run_id": \"%s\", "app_id": \"%s\"}' % (self.__id_from_url(os.environ['WERCKER_RUN_URL']), self.__id_from_url(os.environ['WERCKER_APPLICATION_URL']))),
                                     style = 'danger',
                                     confirm = dict(
                                         title = 'Are you sure?',
@@ -76,7 +76,7 @@ class BuildFail(object):
                                     name = 'report',
                                     text = 'View report',
                                     type = 'button',
-                                    value = ('{"run_id": \"%s\", "app_id": \"%s\"}' % (self.__id_from_url(os.environ['WERCKER_RUN_URL']), self.__id_from_url(os.environ['WERCKER_APPLICATION_URL'])))
+                                    value = self.report_url
                                 )
                             ]
                         )
