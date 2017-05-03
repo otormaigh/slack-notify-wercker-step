@@ -1,19 +1,19 @@
 name: slack-notify
-version: 0.0.73
+version: 0.1.0
 description: Notify user or channel on outcome of a step.
 keywords:
   - slack
 properties:
-  channel:
+  default_channel:
     type: string
-    required: true
-  notify_fail:
+    required: false
+  notify_on_success:
+    type: string
+    required: false
+  notify_on_fail:
     type: string
     return: false
   icon_url:
-    type: string
-    required: false
-  report_url:
     type: string
     required: false
   message:

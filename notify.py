@@ -7,32 +7,55 @@ from build_pass import BuildPass
 from slackclient import SlackClient
 
 
-channels = os.environ['WERCKER_SLACK_NOTIFY_CHANNEL']
-project_name = os.environ['WERCKER_GIT_REPOSITORY']
-branch = os.environ['WERCKER_GIT_BRANCH']
-icon_url = os.environ['WERCKER_SLACK_NOTIFY_ICON']
+"""
+Split a comma seperated string into a list, removing any white space while your there.s
+"""
+def spliterator(bad_list):
+    return bad_list.replace(' ', '').split(',')
+
 
 result = os.environ['WERCKER_RESULT']
 
-print('channels = ', channels)
-print('channel.envar = ', os.environ['WERCKER_SLACK_NOTIFY_CHANNEL'])
+"""
+Only proceed if we have a vaild build result.
+"""
+if not result:
+    icon_url = os.getenv('WERCKER_SLACK_NOTIFY_ICON')
+    notify_fail = spliterator(os.getenv('WERCKER_SLACK_NOTIFY_NOTIFY_ON_FAIL'))
+    notify_success = spliterator(os.getenv('WERCKER_SLACK_NOTIFY_NOTIFY_ON_SUCCESS'))
 
-if not channels:
-    channels = '#general'
+    project_name = os.environ['WERCKER_GIT_REPOSITORY']
+    branch = os.environ['WERCKER_GIT_BRANCH']
 
-if result == 'failed':
-    # TODO : Elliot -> Get an actual url to where the reports.zip is stored.
-    report_url = 'https://i.imgur.com/s85Xa.png'
+    """
+    Check the outcome of the build and send the relevant message.
+    """
+    slack_client = SlackClient(os.environ['SLACK_BOT_TOKEN'])
+    if result == 'failed':
+        message = BuildFail(project_name,
+                            branch,
+                            icon_url)
+        if not notify_fail:
+            for channel in notify_fail:
+                message.send(slack_client, channel)
+    else:
+        message = BuildPass(project_name,
+                            icon_url,
+                            os.environ['VERSION_NAME'])
+        """
+        If 'notify_success' is empty set the notify channel to 'default_channel'.
+        If its empty too, set the notify channel to '#general'.
+        """
+        if not notify_success:
+            default_channel = os.environ['WERCKER_SLACK_NOTIFY_DEFAULT_CHANNEL']
+            if default_channel:
+                notify_success = default_channel
+            else:
+                notify_success = '#general'
 
-    message = BuildFail(project_name,
-                        branch,
-                        report_url,
-                        icon_url)
+        for channel in notify_success:
+            message.send(slack_client, channel)
 else:
-    message = BuildPass(project_name,
-                        icon_url,
-                        os.environ['VERSION_NAME'])
-
-for channel in channels.split(','):
-    print('channel = ', channel)
-    message.send(SlackClient(os.environ['SLACK_BOT_TOKEN']), channel)
+    print('-----------------------------------------')
+    print('No build result found, skipping this step')
+    print('-----------------------------------------')

@@ -6,11 +6,12 @@ import os
 
 
 class BuildFail(object):
-    def __init__(self, project_name, branch, report_url, icon_url):
+    def __init__(self, project_name, branch, icon_url):
         self.project_name = project_name
         self.branch = branch
-        self.report_url = report_url
         self.icon_url = icon_url
+        # TODO : Elliot -> Get an actual url to where the reports.zip is stored.
+        self.report_url = 'https://i.imgur.com/s85Xa.png'
 
 
     """
