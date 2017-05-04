@@ -8,10 +8,11 @@ from slackclient import SlackClient
 
 
 """
-Split a comma seperated string into a list, removing any white space while your there.s
+Split a comma seperated string into a list, removing any white space while your there.
 """
-def spliterator(bad_list):
-    return bad_list.replace(' ', '').split(',')
+def spliterator(bad_string):
+    if bad_string:
+        return bad_string.replace(' ', '').split(',')
 
 
 result = os.environ['WERCKER_RESULT']
@@ -46,16 +47,17 @@ if result:
         If 'notify_success' is empty set the notify channel to 'default_channel'.
         If its empty too, set the notify channel to '#general'.
         """
+        print('notify_success alpha = %s' % notify_success)
         if not notify_success:
+            print('notify_success is empty')
             default_channel = os.getenv('WERCKER_SLACK_NOTIFY_DEFAULT_CHANNEL')
-            if default_channel:
-                notify_success = default_channel
-            else:
-                notify_success = '#general'
+            print('default_channel = %s' % default_channel)
+            notify_success = default_channel if default_channel else '#general'
 
-        print('notify_success = ', notify_success)
+        print('notify_success beta = %s' % notify_success)
         for channel in notify_success:
-            message.send(slack_client, channel)
+            if channel:
+                message.send(slack_client, channel)
 else:
     print('-----------------------------------------')
     print('No build result found, skipping this step')
