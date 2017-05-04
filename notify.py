@@ -22,8 +22,8 @@ Only proceed if we have a vaild build result.
 """
 if result:
     icon_url = os.getenv('WERCKER_SLACK_NOTIFY_ICON')
-    notify_fail = spliterator(os.getenv('WERCKER_SLACK_NOTIFY_NOTIFY_ON_FAIL'))
-    notify_success = spliterator(os.getenv('WERCKER_SLACK_NOTIFY_NOTIFY_ON_SUCCESS'))
+    notify_fail = os.getenv('WERCKER_SLACK_NOTIFY_NOTIFY_ON_FAIL')
+    notify_success = os.getenv('WERCKER_SLACK_NOTIFY_NOTIFY_ON_SUCCESS')
 
     project_name = os.environ['WERCKER_GIT_REPOSITORY']
     branch = os.environ['WERCKER_GIT_BRANCH']
@@ -37,7 +37,7 @@ if result:
                             branch,
                             icon_url)
         if not notify_fail:
-            for channel in notify_fail:
+            for channel in spliterator(notify_fail):
                 message.send(slack_client, channel)
     else:
         message = BuildPass(project_name,
@@ -55,7 +55,7 @@ if result:
             notify_success = default_channel if default_channel else '#general'
 
         print('notify_success beta = %s' % notify_success)
-        for channel in notify_success:
+        for channel in spliterator(notify_success):
             if channel:
                 message.send(slack_client, channel)
 else:
