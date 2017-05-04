@@ -38,7 +38,7 @@ after-steps:
       icon_url: 'https://apps.tapadoo.com/icons/stc.png'
 ```
 
-If you want to use a specific version of this step add `@versionName` to the end of the step name. See the [Project detail](https://app.wercker.com/applications/59021e4cd3bae80100206b1f/tab/details/) page for a list of available releases.
+If you want to use a specific version of this step add `@versionName` to the end of the step name. See the [Releases](https://github.com/otormaigh/slack-notify-wercker-step/releases) page for a list of available releases.
 
 ```
 after-steps:
