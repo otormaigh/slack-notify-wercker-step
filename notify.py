@@ -21,7 +21,7 @@ result = os.environ['WERCKER_RESULT']
 Only proceed if we have a vaild build result.
 """
 if result:
-    icon_url = os.getenv('WERCKER_SLACK_NOTIFY_ICON')
+    icon_url = os.getenv('WERCKER_SLACK_NOTIFY_ICON_URL')
     notify_fail = os.getenv('WERCKER_SLACK_NOTIFY_NOTIFY_ON_FAIL')
     notify_success = os.getenv('WERCKER_SLACK_NOTIFY_NOTIFY_ON_SUCCESS')
 
