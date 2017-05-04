@@ -70,11 +70,6 @@ class BuildPass(object):
                                 title = 'Started by',
                                 value = os.environ['WERCKER_STARTED_BY'],
                                 short = True
-                            ),
-                            dict(
-                                title = 'Related issues',
-                                value = '',
-                                short = False
                             )
                         ]
                     )
