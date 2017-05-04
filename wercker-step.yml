@@ -16,6 +16,3 @@ properties:
   icon_url:
     type: string
     required: false
-  message:
-    type: string
-    required: false

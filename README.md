@@ -32,8 +32,10 @@ Add this as a an `after-step` to your build.
 ```
 after-steps:
   - tapadoo/slack-notify:
-      channel: '#general, #random, @elliot'
-      icon: 'https://apps.tapadoo.com/icons/stc.png'
+      default_channel: '#general'
+      notify_on_success: '#some_project_channel,@lliot'
+      notify_on_fail: '@elliot'
+      icon_url: 'https://apps.tapadoo.com/icons/stc.png'
 ```
 
 If you want to use a specific version of this step add `@versionName` to the end of the step name. See the [Project detail](https://app.wercker.com/applications/59021e4cd3bae80100206b1f/tab/details/) page for a list of available releases.
