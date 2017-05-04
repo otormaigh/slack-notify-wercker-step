@@ -47,14 +47,10 @@ if result:
         If 'notify_success' is empty set the notify channel to 'default_channel'.
         If its empty too, set the notify channel to '#general'.
         """
-        print('notify_success alpha = %s' % notify_success)
         if not notify_success:
-            print('notify_success is empty')
             default_channel = os.getenv('WERCKER_SLACK_NOTIFY_DEFAULT_CHANNEL')
-            print('default_channel = %s' % default_channel)
             notify_success = default_channel if default_channel else '#general'
 
-        print('notify_success beta = %s' % notify_success)
         for channel in spliterator(notify_success):
             if channel:
                 message.send(slack_client, channel)
